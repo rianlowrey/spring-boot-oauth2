@@ -1,0 +1,15 @@
+bin/
+build/
+out/
+target/
+.gradle/
+.idea/
+
+.classpath
+.project
+.settings
+*.iml
+*.DS_Store
+*.pem
+*.key
+*.pub
