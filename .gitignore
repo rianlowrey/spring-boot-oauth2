@@ -8,6 +8,7 @@ target/
 .classpath
 .project
 .settings
+application-*.properties
 *.iml
 *.DS_Store
 *.pem

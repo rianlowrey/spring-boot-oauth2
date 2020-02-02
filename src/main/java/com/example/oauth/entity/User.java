@@ -1,8 +1,9 @@
 package com.example.oauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,22 +34,31 @@ public class User implements Serializable {
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Authority> authorities = Collections.emptyList();
+    @OneToMany(mappedBy = "compositeKey.username", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Authority> authorities = Collections.emptySet();
 
     public String getUsername() {
         return this.username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return this.password;
     }
 
-    public List<Authority> getAuthorities() {
+    public Set<Authority> getAuthorities() {
         return this.authorities;
     }
 
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
+    public void setEnabled(final boolean enabled) {
+        this.enabled = enabled;
     }
 }
